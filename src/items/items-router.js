@@ -1,36 +1,18 @@
 const path = require('path');
 const express = require('express');
 const xss = require('xss');
-const moment = require('moment');
 
 const ItemsService = require('./items-service');
 
-const now = new Date();
 const itemsRouter = express.Router();
 const jsonParser = express.json();
 
-const formatTime = time => {
-  let daysAgo = moment(time).diff(now, 'days'); // # of days ago
-  let weekday = moment(time).format('dddd'); // Weekday spelled out
-  let date = moment(time).format('MMM D');
-
-  if (daysAgo === 0) {
-    return 'Today'
-  }
-  if (daysAgo === -1) {
-    return 'Yesterday'
-  }
-  else {
-    return `${daysAgo} days ago (${weekday}, ${date})`
-  }
-}
-
-//serializes item and formats date for client
+//serializes item for client
 const processItem = item => ({
   id: item.id, 
   name: xss(item.name), 
   sectionId: item.section_id,
-  dateAdded: formatTime(item.date_added),
+  dateAdded: item.date_added,
   note: xss(item.note),
   initQuantity: item.init_quantity,
   currQuantity: item.curr_quantity, 
