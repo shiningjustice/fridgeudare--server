@@ -8,7 +8,7 @@ const itemsRouter = express.Router();
 const jsonParser = express.json();
 
 //serializes item for client
-const processItem = item => ({
+const serializeItem = item => ({
   id: item.id, 
   name: xss(item.name), 
   sectionId: item.section_id,
@@ -25,7 +25,7 @@ itemsRouter
       req.app.get('db')
     )
       .then(items => {
-        res.json(items.map(processItem))
+        res.json(items.map(serializeItem))
       })
       .catch(next)
   })
@@ -53,15 +53,15 @@ itemsRouter
 
     //Check that they are the right type of values
     let strings = [name, note];
-    let integers = [quantity]; 
+    let numbers = [quantity]; 
 
     strings.forEach(string => {
       if (typeof(string) !== 'string') {
         return res.status(400).json({ error: `Missing ${string} in request body`})
       }
     })
-    integers.forEach(integer => {
-      if (typeof(JSON.parse(integer)) !== 'number' || (JSON.parse(integer)) <= 0) {
+    numbers.forEach(number => {
+      if (typeof(JSON.parse(number)) !== 'number' || (JSON.parse(number)) <= 0) {
         return res.status(400).json({ error: `Quantity must be an number greater than 0`})
       }
     })
@@ -74,10 +74,41 @@ itemsRouter
         res
           .status(201)
           //No location provided per no existing 'getById point' 
-          .json(processItem(item))
+          .json(serializeItem(item))
       })
       .catch(next);  
     })
+
+itemsRouter
+  .route('/options?')
+  .get((req, res, next) => {
+    const {search, filteredFolders, sort} = req.query;
+    const options = [search, filteredFolders, sort];
+
+    const numOfValues = Object.values(options).filter(Boolean).length;
+    if (numOfValues === 0) {
+      return res 
+        .status(400)
+        .json({
+          error: {
+            message: `Request queries must contain search term, folders to filter, and/or sort params.`
+          }
+        })
+    }
+
+    ItemsService.getSearchedItems(
+      req.app.get('db'),
+      req.query.search, 
+      req.query.filteredFolders, 
+      req.query.sort
+    )
+      .then(items => 
+        res
+          .status(200)
+          .json(items.map(serializeItem))
+      )
+      .catch(next)
+  })
 
 itemsRouter
   .route('/:itemId')
@@ -90,7 +121,7 @@ itemsRouter
         if (!item) {
           return res.status(404).json({ error: `Item does not exist` })
         }
-        res.item = item
+        res.item = item;
         next();
       })
       .catch(next)
@@ -99,6 +130,40 @@ itemsRouter
     ItemsService.deleteItem(
       req.app.get('db'),
       req.params.itemId
+    )
+      .then(() => {
+        res.status(204).end()
+      })
+      .catch(next);
+  })
+  .patch(jsonParser, (req, res, next) => {
+    const { name, sectionId, note, currQuantity } = req.body;
+
+    if (res.item.init_quantity < currQuantity) {
+      return res
+        .status(400)
+        .json({ error: { message: `currQuantity cannot exceed init_quantity` }})
+    }
+
+    const curr_quantity = currQuantity;
+    const section_id = sectionId;
+    const fieldsToUpdate = { name, section_id, note, curr_quantity };
+
+    const numOfValues = Object.values(fieldsToUpdate).filter(Boolean).length;
+    if (numOfValues === 0) {
+      return res 
+        .status(400)
+        .json({
+          error: {
+            message: `Request body must contain name, section, note, or updated quantity.`
+          }
+        })
+    }
+
+    ItemsService.updateItem(
+      req.app.get('db'),
+      req.params.itemId,
+      fieldsToUpdate
     )
       .then(() => {
         res.status(204).end()

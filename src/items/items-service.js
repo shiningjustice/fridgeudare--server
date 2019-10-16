@@ -17,11 +17,22 @@ const ItemsService = {
       .where('id', id)
       .first()
   },
+  updateItem(knex, id, fieldsToUpdate) {
+    return knex('items')
+      .where({ id })
+      .update(fieldsToUpdate)
+  },
   deleteItem(knex, id) {
     return knex('items')
       .where({ id })
       .delete()
+  },
+  getSearchedItems(knex, searchTerm, filters, sorting) {
+    return knex('items', {only: searchTerm})
+      .select('*')
+      .where('name', 'like', `%${searchTerm}%`)
   }
+
 }
 
 module.exports = ItemsService;
