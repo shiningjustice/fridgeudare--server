@@ -80,37 +80,6 @@ itemsRouter
     })
 
 itemsRouter
-  .route('/options?')
-  .get((req, res, next) => {
-    const {search, filteredFolders, sort} = req.query;
-    const options = [search, filteredFolders, sort];
-
-    const numOfValues = Object.values(options).filter(Boolean).length;
-    if (numOfValues === 0) {
-      return res 
-        .status(400)
-        .json({
-          error: {
-            message: `Request queries must contain search term, folders to filter, and/or sort params.`
-          }
-        })
-    }
-
-    ItemsService.getSearchedItems(
-      req.app.get('db'),
-      req.query.search, 
-      req.query.filteredFolders, 
-      req.query.sort
-    )
-      .then(items => 
-        res
-          .status(200)
-          .json(items.map(serializeItem))
-      )
-      .catch(next)
-  })
-
-itemsRouter
   .route('/:itemId')
   .all((req, res, next) => {
     ItemsService.getById(

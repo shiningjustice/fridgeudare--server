@@ -26,13 +26,7 @@ const ItemsService = {
     return knex('items')
       .where({ id })
       .delete()
-  },
-  getSearchedItems(knex, searchTerm, filters, sorting) {
-    return knex('items', {only: searchTerm})
-      .select('*')
-      .where('name', 'like', `%${searchTerm}%`)
   }
-
 }
 
 module.exports = ItemsService;

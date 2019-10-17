@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config')
 const sectionsRouter = require('./sections/sections-router')
 const itemsRouter = require('./items/items-router')
+const resultsRouter = require('./results/results-router')
 
 const app = express(); 
 
@@ -22,6 +23,7 @@ app.use(cors());
 
 app.use('/api/items', itemsRouter)
 app.use('/api/sections', sectionsRouter)
+app.use('/api/results?', resultsRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
