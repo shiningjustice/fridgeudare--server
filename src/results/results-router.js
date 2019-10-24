@@ -2,7 +2,7 @@ const xss = require('xss');
 const express = require('express');
 
 const ResultsService = require('./results-service');
-
+const logger = require('../logger');
 const resultsRouter = express.Router();
 
 const serializeItem = item => ({
@@ -20,11 +20,9 @@ resultsRouter
   .get((req, res, next) => {
     let { search, filteredFolders, sort } = req.query;
 
-    console.log(`in server at start, search = ${search} and filteredFolders = ${filteredFolders} and sort = ${sort}`)
-    const nothingFound = { error: `Nothing found for this search. Please try again.`}
-
     //Check that at least one of the items has a value
     if (!search && !filteredFolders && !sort) {
+        logger.error(`Query does not include search term, folders to filter, and/or sort params`)
         return res 
         .status(400)
         .json({
@@ -128,12 +126,6 @@ resultsRouter
 
     resultsServicePromise
       .then(items => {
-        let returnValue;
-        if (items.length === 0) {
-          return res
-            .status(200)
-            .raw
-        }
         return res
           .status(200)
           .json(items.map(serializeItem))

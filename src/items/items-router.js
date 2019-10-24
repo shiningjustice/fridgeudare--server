@@ -1,8 +1,8 @@
-const path = require('path');
 const express = require('express');
 const xss = require('xss');
 
 const ItemsService = require('./items-service');
+const logger = require('../logger');
 
 const itemsRouter = express.Router();
 const jsonParser = express.json();
@@ -30,17 +30,19 @@ itemsRouter
       .catch(next)
   })
   .post(jsonParser, (req, res, next) => {
-    const { name, sectionId, quantity, note } = req.body;
+    const { name, dateAdded, sectionId, quantity, note } = req.body;
 
     //Check that the required fields have values
     const newItem = {
       name, 
+      date_added: dateAdded,
       section_id: sectionId,
       init_quantity: quantity
      };
 
     for(const [key, value] of Object.entries(newItem)) {
       if (!value) {
+        logger.error(`Missing ${key} in request body`);
         return res.status(404).json({ error: `Missing ${key} in request body`})
       }
     }
@@ -57,11 +59,13 @@ itemsRouter
 
     strings.forEach(string => {
       if (typeof(string) !== 'string') {
+        logger.error(`Missing ${string} in request body`)
         return res.status(400).json({ error: `Missing ${string} in request body`})
       }
     })
     numbers.forEach(number => {
       if (typeof(JSON.parse(number)) !== 'number' || (JSON.parse(number)) <= 0) {
+        logger.error('Quantity is not a number/not a number greater than zero')
         return res.status(400).json({ error: `Quantity must be an number greater than 0`})
       }
     })
@@ -71,6 +75,7 @@ itemsRouter
       newItem
     )
       .then(item => {
+        logger.info(`Item with id {item.id} created`);
         res
           .status(201)
           //No location provided per no existing 'getById point' 
@@ -88,6 +93,7 @@ itemsRouter
     )
       .then(item => {
         if (!item) {
+          logger.error('Invalid item: does not exist')
           return res.status(404).json({ error: `Item does not exist` })
         }
         res.item = item;
@@ -101,25 +107,29 @@ itemsRouter
       req.params.itemId
     )
       .then(() => {
+        logger.info(`Item with id ${req.params.itemId} deleted`);
         res.status(204).end()
       })
       .catch(next);
   })
   .patch(jsonParser, (req, res, next) => {
-    const { name, sectionId, note, currQuantity } = req.body;
+    const { name, dateAdded, sectionId, note, quantity } = req.body;
 
-    if (res.item.init_quantity < currQuantity) {
+    if (res.item.init_quantity < quantity) {
+      logger.error(`Current quantity var can't ceed initial quantity var`);
       return res
         .status(400)
         .json({ error: { message: `currQuantity cannot exceed init_quantity` }})
     }
 
-    const curr_quantity = currQuantity;
+    const curr_quantity = quantity;
     const section_id = sectionId;
-    const fieldsToUpdate = { name, section_id, note, curr_quantity };
+    const date_added = dateAdded;
+    const fieldsToUpdate = { name, date_added, section_id, note, curr_quantity };
 
     const numOfValues = Object.values(fieldsToUpdate).filter(Boolean).length;
     if (numOfValues === 0) {
+      logger.error(`Request missing field: must contain name, section, note, or updated quantity`)
       return res 
         .status(400)
         .json({
@@ -135,6 +145,7 @@ itemsRouter
       fieldsToUpdate
     )
       .then(() => {
+        logger.info(`Item with id ${req.params.itemId} updated`);
         res.status(204).end()
       })
       .catch(next);
