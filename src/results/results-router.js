@@ -25,11 +25,7 @@ resultsRouter
         logger.error(`Query does not include search term, folders to filter, and/or sort params`)
         return res 
         .status(400)
-        .json({
-          error: {
-            message: `Request queries must contain search term, folders to filter, and/or sort params.`
-          }
-        })
+        .json({ error: { message: `Request queries must contain search term, folders to filter, and/or sort params.` }})
     }
 
     //Convert filteredFolders to be parsed to be a number

@@ -114,7 +114,7 @@ itemsRouter
   })
   .patch(jsonParser, (req, res, next) => {
     const { name, dateAdded, sectionId, note, quantity } = req.body;
-
+    console.log(req.body);
     if (res.item.init_quantity < quantity) {
       logger.error(`Current quantity var can't exceed initial quantity var`);
       return res

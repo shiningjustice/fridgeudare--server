@@ -19,34 +19,39 @@ describe('Items endpoints', () => {
   after('disconnect from db', () => db.destroy());
 
 
-  // describe('unauthorized requests', () => {
-  //   it(`GET /items responds with 401 Unauthorized`, () => {
-  //     return supertest(db)
-  //       .get('/api/items')
-  //       .expect(401, { error: `Unauthorized request` })
-  //   })
-  //   it(`POST /items responds with 401 Unauthorized`, () => {
-  //     return supertest(db)
-  //       .post('/api/items')
-  //       .send(items[0])
-  //       .expect(401, { error: `Unauthorized request` })
-  //   })
-  //   it(`GET /items/:itemId responds with 401 Unauthorized`, () => {
-  //     return supertest(db)
-  //       .get('/api/items/${items[0].id}')
-  //       .expect(401, { error: `Unauthorized request` })
-  //   })
-  //   it(`DELETE /items/:itemId responds with 401 Unauthorized`, () => {
-  //     return supertest(db)
-  //       .delete('/api/items')
-  //       .expect(401, { error: `Unauthorized request` })
-  //   })
-  //   it(`PATCH /items/:itemId responds with 401 Unauthorized`, () => {
-  //     return supertest(db)
-  //       .patch('/api/items')
-  //       .expect(401, { error: `Unauthorized request` })
-  //   })
-  // })
+  describe('unauthorized requests', () => {
+    it(`GET /items responds with 401 Unauthorized`, (done) => {
+      return supertest(db)
+        .get('/api/items')
+        .expect(401, { error: `Unauthorized request` })
+        .end(done());
+    })
+    it(`POST /items responds with 401 Unauthorized`, (done) => {
+      return supertest(db)
+        .post('/api/items')
+        .send(items[0])
+        .expect(401, { error: `Unauthorized request` })
+        .end(done());
+    })
+    it(`GET /items/:itemId responds with 401 Unauthorized`, (done) => {
+      return supertest(db)
+        .get('/api/items/${items[0].id}')
+        .expect(401, { error: `Unauthorized request` })
+        .end(done());
+    })
+    it(`DELETE /items/:itemId responds with 401 Unauthorized`, (done) => {
+      return supertest(db)
+        .delete('/api/items')
+        .expect(401, { error: `Unauthorized request` })
+        .end(done());
+    })
+    it(`PATCH /items/:itemId responds with 401 Unauthorized`, (done) => {
+      return supertest(db)
+        .patch('/api/items')
+        .expect(401, { error: `Unauthorized request` })
+        .end(done());
+    })
+  })
 
   context('authorized requests', () => {
     describe('GET /api/items', () => {
