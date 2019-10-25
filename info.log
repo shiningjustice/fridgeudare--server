@@ -26,3 +26,119 @@
 {"message":"Item with id 18 updated","level":"info"}
 {"message":"Item with id 18 updated","level":"info"}
 {"message":"Item with id 17 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Current quantity var can't exceed initial quantity var","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Current quantity var can't exceed initial quantity var","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Current quantity var can't exceed initial quantity var","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Unauthorized request to path: /","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Current quantity var can't exceed initial quantity var","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}
+{"message":"Unauthorized request to path: /","level":"error"}
+{"message":"Unauthorized request to path: /","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Item with id 1 deleted","level":"info"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Invalid item: does not exist","level":"error"}
+{"message":"Current quantity var can't exceed initial quantity var","level":"error"}
+{"message":"Request missing field: must contain name, section, note, or updated quantity","level":"error"}
+{"message":"Item with id 1 updated","level":"info"}

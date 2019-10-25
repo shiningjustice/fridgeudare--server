@@ -59,8 +59,8 @@ itemsRouter
 
     strings.forEach(string => {
       if (typeof(string) !== 'string') {
-        logger.error(`Missing ${string} in request body`)
-        return res.status(400).json({ error: `Missing ${string} in request body`})
+        logger.error(`Input ${string} should be of type string`)
+        return res.status(400).json({ error: `Input ${string} should be of type string`})
       }
     })
     numbers.forEach(number => {
@@ -116,7 +116,7 @@ itemsRouter
     const { name, dateAdded, sectionId, note, quantity } = req.body;
 
     if (res.item.init_quantity < quantity) {
-      logger.error(`Current quantity var can't ceed initial quantity var`);
+      logger.error(`Current quantity var can't exceed initial quantity var`);
       return res
         .status(400)
         .json({ error: { message: `currQuantity cannot exceed init_quantity` }})
@@ -133,9 +133,7 @@ itemsRouter
       return res 
         .status(400)
         .json({
-          error: {
-            message: `Request body must contain name, section, note, or updated quantity.`
-          }
+          error: { message: `Request body must contain name, section, note, or updated quantity.` }
         })
     }
 

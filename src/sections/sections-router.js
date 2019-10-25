@@ -10,7 +10,7 @@ sectionsRouter
       req.app.get('db')
     )
       .then(sections => {
-        res.json(sections)
+        res.status(200).json(sections)
       })
       .catch(next)
   })
