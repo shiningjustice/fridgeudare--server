@@ -15,11 +15,11 @@ signupsRouter
     for(const [key,value] of Object.entries(newSignup)) {
       if (!value) {
         logger.error(`No key in request body`)
-        return res.status(404).json({ error: `Missing ${key} in request body`})
+        return res.status(404).json({ error: `Missing ${key} in request body` })
       }
       if (typeof(value) != 'string') {
         logger.error(`Key in req.body is not type string`)
-        res.status(400).json({ error: `${key} must be type string`});
+        res.status(404).json({ error: `${key} must be type string`});
       }
     }
     

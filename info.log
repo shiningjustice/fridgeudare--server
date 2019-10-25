@@ -1,1 +1,3 @@
 {"message":"Item with id 3 updated","level":"info"}
+{"message":"Item with id {item.id} created","level":"info"}
+{"message":"Item with id 24 deleted","level":"info"}
