@@ -43,7 +43,7 @@ itemsRouter
     for(const [key, value] of Object.entries(newItem)) {
       if (!value) {
         logger.error(`Missing ${key} in request body`);
-        return res.status(404).json({ error: `Missing ${key} in request body`})
+        return res.status(400).json({ error: `Missing ${key} in request body`})
       }
     }
 

@@ -12,4 +12,5 @@ INSERT INTO sections
   ('Pantry'),
   ('Dairy'),
   ('Frozen'),
-  ('Pet/Baby')
+  ('Pet/Baby'), 
+  ('Leftovers')

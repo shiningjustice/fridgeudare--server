@@ -11,6 +11,7 @@ const sectionsRouter = require('./sections/sections-router')
 const itemsRouter = require('./items/items-router')
 const resultsRouter = require('./results/results-router')
 const signupsRouter = require('./signups/signups-router')
+const logger = require('./logger')
 
 const app = express(); 
 
@@ -25,7 +26,6 @@ app.use(helmet());
 app.use(function validateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN
   const authToken = req.get('Authorization')
-  console.log(authToken.split(' ')[1], apiToken);
 
   if (!authToken || authToken.split(' ')[1] !== apiToken) {
     logger.error(`Unauthorized request to path: ${req.path}`);
