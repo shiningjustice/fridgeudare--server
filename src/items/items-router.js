@@ -127,6 +127,7 @@ itemsRouter
     const date_added = dateAdded;
     const fieldsToUpdate = { name, date_added, section_id, note, curr_quantity };
 
+    console.log(quantity)
     const numOfValues = Object.values(fieldsToUpdate).filter(Boolean).length;
     if (numOfValues === 0) {
       logger.error(`Request missing field: must contain name, section, note, or updated quantity`)
