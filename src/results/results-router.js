@@ -122,9 +122,15 @@ resultsRouter
 
     resultsServicePromise
       .then(items => {
-        return res
-          .status(200)
-          .json(items.map(serializeItem))
+        if (items.length === 0) {
+          return res
+            .status(400)
+            .json({ error: 'No items found that match your request. Try another search or return to the home page.'})
+        } else {
+          return res
+            .status(200)
+            .json(items.map(serializeItem))
+        }
       })
       .catch(next)
   })  
