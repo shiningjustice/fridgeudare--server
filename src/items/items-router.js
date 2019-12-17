@@ -114,7 +114,6 @@ itemsRouter
   })
   .patch(jsonParser, (req, res, next) => {
     const { name, dateAdded, sectionId, note, quantity } = req.body;
-    console.log(req.body);
     if (res.item.init_quantity < quantity) {
       logger.error(`Current quantity var can't exceed initial quantity var`);
       return res
@@ -127,7 +126,6 @@ itemsRouter
     const date_added = dateAdded;
     const fieldsToUpdate = { name, date_added, section_id, note, curr_quantity };
 
-    console.log(quantity)
     const numOfValues = Object.values(fieldsToUpdate).filter(Boolean).length;
     if (numOfValues === 0) {
       logger.error(`Request missing field: must contain name, section, note, or updated quantity`)

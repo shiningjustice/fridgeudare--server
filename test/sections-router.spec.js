@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const knex = require('knex');
 
 const config = require('../src/config');
@@ -28,6 +27,8 @@ describe('sections endpoint', () => {
   })
   context('authorized requests', () => {
     describe('GET /api/sections', () => {
+      //we don't need before each here because in this implementation they are already present
+      
       context('given there are sections in the table', () => {
         it('responds with a 200 and the sections', (done) => {
           return supertest(db)

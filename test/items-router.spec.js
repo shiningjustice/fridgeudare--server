@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const knex = require('knex');
 
 const app = require('../src/app');
@@ -16,6 +15,7 @@ describe('Items endpoints', () => {
   });
   beforeEach('empty db', () => db('items').truncate());
   afterEach('empty db', () => db('items').truncate());
+  //we don't need to insert here because they shouldn't be unseeded in this implementation
   after('disconnect from db', () => db.destroy());
 
 
